@@ -47,7 +47,7 @@ function handleThisStep() {
 
   Array.from(cols[currCol].children).forEach(child => {
     if (child.classList.contains("on")) {
-      child.style.transform = "scale(1)";
+      child.style.transform = "scale(0.9)";
     }
   });
 
