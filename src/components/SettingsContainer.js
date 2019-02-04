@@ -24,20 +24,20 @@ class SettingsContainer extends Component {
   render() {
     return (
       <div id="settingsContainer">
-        <div class="settingsSections">
+        <div className="settingsSections">
           <button id="playPause" onClick={this.handleClick}>
             <i className={this.state.faClass} aria-hidden="true" />
           </button>
         </div>
-        <div class="settingsSections">
+        <div className="settingsSections">
           <div>Master volume</div>
           <div>(volume slider)</div>
         </div>
-        <div class="settingsSections">
+        <div className="settingsSections">
           <div>Tempo</div>
           <div>(tempo adjust)</div>
         </div>
-        <div class="settingsSections">
+        <div className="settingsSections">
           <div>Kit</div>
           <div>(kit selector)</div>
         </div>

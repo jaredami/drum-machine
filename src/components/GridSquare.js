@@ -15,6 +15,12 @@ class GridSquare extends Component {
     this.setState({ on: !currentState });
   }
 
+  getStyle = () => {
+    return {
+      transform: this.state.on ? "scale(0.9)" : "scale(1)"
+    };
+  };
+
   render() {
     return (
       <button
@@ -23,6 +29,7 @@ class GridSquare extends Component {
         }
         data-instrument={this.props.inst}
         onClick={this.toggleOnClass}
+        style={this.getStyle()}
       />
     );
   }
