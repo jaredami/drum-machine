@@ -4,19 +4,19 @@ class SettingsContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      faClass: "fa fa-play",
+      playPauseIconClass: "ion-md-play",
       tempo: 100
     };
   }
 
   handlePlayPauseClick = () => {
-    if (this.state.faClass === "fa fa-play") {
+    if (this.state.playPauseIconClass === "ion-md-play") {
       this.setState({
-        faClass: "fa fa-pause"
+        playPauseIconClass: "ion-md-pause"
       });
-    } else if (this.state.faClass === "fa fa-pause") {
+    } else if (this.state.playPauseIconClass === "ion-md-pause") {
       this.setState({
-        faClass: "fa fa-play"
+        playPauseIconClass: "ion-md-play"
       });
     }
   };
@@ -36,26 +36,33 @@ class SettingsContainer extends Component {
     return (
       <div id="settingsContainer">
         <div className="settingsSections">
-          <button id="playPause" onClick={this.handlePlayPauseClick}>
-            <i className={this.state.faClass} aria-hidden="true" />
+          <button
+            className="settings-btn"
+            id="playPause"
+            onClick={this.handlePlayPauseClick}
+          >
+            <i
+              className={`icon ${this.state.playPauseIconClass}`}
+              aria-hidden="true"
+            />
           </button>
         </div>
         <div className="settingsSections">
-          <div>Master volume</div>
-          <div>(volume slider)</div>
+          <button className="settings-btn" id="mute-btn">
+            <i id="mute-icon" className="icon ion-md-volume-off" />
+          </button>
         </div>
         <div className="settingsSections">
-          <div>Tempo</div>
           <div id="adjustTempoContainer">
             <button
-              className="adjustTempoBtn"
+              className="settings-btn"
               onClick={this.handleTempoDecreaseClick}
             >
               v
             </button>
             <div id="tempo">{this.state.tempo}</div>
             <button
-              className="adjustTempoButton"
+              className="settings-btn"
               onClick={this.handleTempoIncreaseClick}
             >
               ^

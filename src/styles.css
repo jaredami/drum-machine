@@ -21,17 +21,17 @@
   border-radius: 4px;
   color: white; }
 
-#playPause {
+.settings-btn {
   background-color: #352F2F;
   border: 2px solid gray;
   border-radius: 4px;
   height: 46px;
   width: 46px;
   font-size: 1.5rem; }
-  #playPause:hover {
+  .settings-btn:hover {
     cursor: pointer;
     filter: brightness(130%); }
-  #playPause:focus {
+  .settings-btn:focus {
     outline: none; }
 
 #adjustTempoContainer {

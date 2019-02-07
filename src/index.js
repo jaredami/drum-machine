@@ -3,30 +3,42 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import crash from "./sounds/crash.mp3";
-import ride from "./sounds/ride.mp3";
-import hatOpen from "./sounds/hat-open.mp3";
-import hatClosed from "./sounds/hat-closed.mp3";
-import tom from "./sounds/tom.mp3";
-import snare from "./sounds/snare-flanged.wav";
-import clap from "./sounds/clap.mp3";
-import kick from "./sounds/kick.mp3";
+import crashClip from "./sounds/crash.mp3";
+import rideClip from "./sounds/ride.mp3";
+import hatOpenClip from "./sounds/hat-open.mp3";
+import hatClosedClip from "./sounds/hat-closed.mp3";
+import tomClip from "./sounds/tom.mp3";
+import snareClip from "./sounds/snare-flanged.wav";
+import clapClip from "./sounds/clap.mp3";
+import kickClip from "./sounds/kick.mp3";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 
-const crashAud = new Audio(crash);
-const rideAud = new Audio(ride);
-const hatOpenAud = new Audio(hatOpen);
-const hatClosedAud = new Audio(hatClosed);
-const tomAud = new Audio(tom);
-const snareAud = new Audio(snare);
-const clapAud = new Audio(clap);
-const kickAud = new Audio(kick);
+// const crash = new Audio(crashClip);
+// const ride = new Audio(rideClip);
+// const hatOpen = new Audio(hatOpenClip);
+// const hatClosed = new Audio(hatClosedClip);
+// const tom = new Audio(tomClip);
+// const snare = new Audio(snareClip);
+// const clap = new Audio(clapClip);
+// const kick = new Audio(kickClip);
+
+const sounds = {
+  crash: new Audio(crashClip),
+  ride: new Audio(rideClip),
+  hatOpen: new Audio(hatOpenClip),
+  hatClosed: new Audio(hatClosedClip),
+  tom: new Audio(tomClip),
+  snare: new Audio(snareClip),
+  clap: new Audio(clapClip),
+  kick: new Audio(kickClip)
+};
 
 const cols = document.querySelectorAll(".col");
 
 let currentColumn = 0;
 let stepLoop;
+let muted = true;
 
 // play the beat
 function start() {
@@ -75,45 +87,67 @@ function handleThisStep() {
 }
 
 function playInstrument(instrument) {
-  if (instrument === "crash") {
-    crashAud.currentTime = 0;
-    crashAud.play();
-  }
-  if (instrument === "ride") {
-    rideAud.currentTime = 0;
-    rideAud.play();
-  }
-  if (instrument === "hatOpen") {
-    hatOpenAud.currentTime = 0;
-    hatOpenAud.play();
-  }
-  if (instrument === "hatClosed") {
-    hatClosedAud.currentTime = 0;
-    hatClosedAud.play();
-  }
-  if (instrument === "tom") {
-    tomAud.currentTime = 0;
-    tomAud.play();
-  }
-  if (instrument === "snare") {
-    snareAud.currentTime = 0;
-    snareAud.play();
-  }
-  if (instrument === "clap") {
-    clapAud.currentTime = 0;
-    clapAud.play();
-  }
-  if (instrument === "kick") {
-    kickAud.currentTime = 0;
-    kickAud.play();
+  if (!muted) {
+    for (let i in sounds) {
+      if (i === instrument) {
+        sounds[i].currentTime = 0;
+        sounds[i].play();
+      }
+    }
   }
 }
+
+// function playInstrument(instrument) {
+//   if (instrument === "crash") {
+//     crash.currentTime = 0;
+//     crash.play();
+//   }
+//   if (instrument === "ride") {
+//     ride.currentTime = 0;
+//     ride.play();
+//   }
+//   if (instrument === "hatOpen") {
+//     hatOpen.currentTime = 0;
+//     hatOpen.play();
+//   }
+//   if (instrument === "hatClosed") {
+//     hatClosed.currentTime = 0;
+//     hatClosed.play();
+//   }
+//   if (instrument === "tom") {
+//     tom.currentTime = 0;
+//     tom.play();
+//   }
+//   if (instrument === "snare") {
+//     snare.currentTime = 0;
+//     snare.play();
+//   }
+//   if (instrument === "clap") {
+//     clap.currentTime = 0;
+//     clap.play();
+//   }
+//   if (instrument === "kick") {
+//     kick.currentTime = 0;
+//     kick.play();
+//   }
+// }
 
 let playing = false;
 
 document.getElementById("playPause").addEventListener("click", () => {
   playing ? pause() : start();
   playing = !playing;
+});
+document.getElementById("mute-btn").addEventListener("click", () => {
+  muted = !muted;
+  document.getElementById("mute-icon").classList.contains("ion-md-volume-off")
+    ? document.getElementById("mute-icon").classList.remove("ion-md-volume-off")
+    : document.getElementById("mute-icon").classList.add("ion-md-volume-off");
+  document.getElementById("mute-icon").classList.contains("ion-md-volume-high")
+    ? document
+        .getElementById("mute-icon")
+        .classList.remove("ion-md-volume-high")
+    : document.getElementById("mute-icon").classList.add("ion-md-volume-high");
 });
 
 // If you want your app to work offline and load faster, you can change
