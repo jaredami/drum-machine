@@ -8,7 +8,7 @@ import rideClip from "./sounds/ride.mp3";
 import hatOpenClip from "./sounds/hat-open.mp3";
 import hatClosedClip from "./sounds/hat-closed.mp3";
 import tomClip from "./sounds/tom.mp3";
-import snareClip from "./sounds/snare-flanged.wav";
+import snareClip from "./sounds/snare-flanged.mp3";
 import clapClip from "./sounds/clap.mp3";
 import kickClip from "./sounds/kick.mp3";
 
