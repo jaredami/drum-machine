@@ -4,12 +4,12 @@ class SettingsContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      faClass: "fa fa-play"
+      faClass: "fa fa-play",
+      tempo: 100
     };
-    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
+  handlePlayPauseClick = () => {
     if (this.state.faClass === "fa fa-play") {
       this.setState({
         faClass: "fa fa-pause"
@@ -19,13 +19,24 @@ class SettingsContainer extends Component {
         faClass: "fa fa-play"
       });
     }
-  }
+  };
+
+  handleTempoDecreaseClick = () => {
+    this.setState({
+      tempo: this.state.tempo - 1
+    });
+  };
+  handleTempoIncreaseClick = () => {
+    this.setState({
+      tempo: this.state.tempo + 1
+    });
+  };
 
   render() {
     return (
       <div id="settingsContainer">
         <div className="settingsSections">
-          <button id="playPause" onClick={this.handleClick}>
+          <button id="playPause" onClick={this.handlePlayPauseClick}>
             <i className={this.state.faClass} aria-hidden="true" />
           </button>
         </div>
@@ -35,7 +46,21 @@ class SettingsContainer extends Component {
         </div>
         <div className="settingsSections">
           <div>Tempo</div>
-          <div>(tempo adjust)</div>
+          <div id="adjustTempoContainer">
+            <button
+              className="adjustTempoBtn"
+              onClick={this.handleTempoDecreaseClick}
+            >
+              v
+            </button>
+            <div id="tempo">{this.state.tempo}</div>
+            <button
+              className="adjustTempoButton"
+              onClick={this.handleTempoIncreaseClick}
+            >
+              ^
+            </button>
+          </div>
         </div>
         <div className="settingsSections">
           <div>Kit</div>

@@ -25,39 +25,48 @@ const kickAud = new Audio(kick);
 
 const cols = document.querySelectorAll(".col");
 
-// let bpm = 120;
-let currCol = 0;
+let currentColumn = 0;
 let stepLoop;
 
+// play the beat
 function start() {
+  let bpm = document.getElementById("tempo").innerHTML;
+  let milliseconds = 60000 / bpm / 4;
   stepLoop = setInterval(function() {
     handleThisStep();
-    currCol < 15 ? (currCol = currCol + 1) : (currCol = 0);
-  }, 160);
+    // after each step, move to the next column; start over after the last column
+    currentColumn < 15
+      ? (currentColumn = currentColumn + 1)
+      : (currentColumn = 0);
+  }, milliseconds);
 }
 
+// pause the beat
 function pause() {
   clearInterval(stepLoop);
 }
 
 function handleThisStep() {
-  let prevCol = currCol > 0 ? currCol - 1 : 15;
-  cols[prevCol].classList.remove("active");
-  cols[currCol].classList.add("active");
+  // set the value of previousColumn to one less than currentColumn
+  let previousColumn = currentColumn > 0 ? currentColumn - 1 : 15;
+  // highlight the current column and remove highlight from the previous column
+  cols[previousColumn].classList.remove("active");
+  cols[currentColumn].classList.add("active");
 
-  Array.from(cols[currCol].children).forEach(child => {
-    if (child.classList.contains("on")) {
-      child.style.transform = "scale(0.9)";
-    }
-  });
-
-  Array.from(cols[currCol].children)
+  // play instrument sound for all instruments turned on in this column
+  Array.from(cols[currentColumn].children)
     .filter(i => i.classList.contains("on"))
     .map(i => i.dataset.instrument)
     .forEach(playInstrument);
 
+  // animate gridSquares when they are played
+  Array.from(cols[currentColumn].children).forEach(child => {
+    if (child.classList.contains("on")) {
+      child.style.transform = "scale(0.9)";
+    }
+  });
   setTimeout(function() {
-    Array.from(cols[currCol].children).forEach(child => {
+    Array.from(cols[currentColumn].children).forEach(child => {
       if (child.classList.contains("on")) {
         child.style.transform = "scale(0.5)";
       }
