@@ -14,15 +14,6 @@ import kickClip from "./sounds/kick.mp3";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 
-// const crash = new Audio(crashClip);
-// const ride = new Audio(rideClip);
-// const hatOpen = new Audio(hatOpenClip);
-// const hatClosed = new Audio(hatClosedClip);
-// const tom = new Audio(tomClip);
-// const snare = new Audio(snareClip);
-// const clap = new Audio(clapClip);
-// const kick = new Audio(kickClip);
-
 const sounds = {
   crash: new Audio(crashClip),
   ride: new Audio(rideClip),
@@ -88,49 +79,10 @@ function handleThisStep() {
 
 function playInstrument(instrument) {
   if (!muted) {
-    for (let i in sounds) {
-      if (i === instrument) {
-        sounds[i].currentTime = 0;
-        sounds[i].play();
-      }
-    }
+    sounds[instrument].currentTime = 0;
+    sounds[instrument].play();
   }
 }
-
-// function playInstrument(instrument) {
-//   if (instrument === "crash") {
-//     crash.currentTime = 0;
-//     crash.play();
-//   }
-//   if (instrument === "ride") {
-//     ride.currentTime = 0;
-//     ride.play();
-//   }
-//   if (instrument === "hatOpen") {
-//     hatOpen.currentTime = 0;
-//     hatOpen.play();
-//   }
-//   if (instrument === "hatClosed") {
-//     hatClosed.currentTime = 0;
-//     hatClosed.play();
-//   }
-//   if (instrument === "tom") {
-//     tom.currentTime = 0;
-//     tom.play();
-//   }
-//   if (instrument === "snare") {
-//     snare.currentTime = 0;
-//     snare.play();
-//   }
-//   if (instrument === "clap") {
-//     clap.currentTime = 0;
-//     clap.play();
-//   }
-//   if (instrument === "kick") {
-//     kick.currentTime = 0;
-//     kick.play();
-//   }
-// }
 
 let playing = false;
 
@@ -138,6 +90,7 @@ document.getElementById("playPause").addEventListener("click", () => {
   playing ? pause() : start();
   playing = !playing;
 });
+
 document.getElementById("mute-btn").addEventListener("click", () => {
   muted = !muted;
   document.getElementById("mute-icon").classList.contains("ion-md-volume-off")

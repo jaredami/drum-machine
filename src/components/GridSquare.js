@@ -25,7 +25,7 @@ class GridSquare extends Component {
     return (
       <button
         className={
-          "pad " + (this.state.on ? "on " + this.props.inst + "Color" : null)
+          "pad " + (this.state.on ? "on " + this.props.inst + "-color" : null)
         }
         data-instrument={this.props.inst}
         onClick={this.toggleOnClass}

@@ -34,7 +34,7 @@ class SettingsContainer extends Component {
 
   render() {
     return (
-      <div id="settingsContainer">
+      <div id="settings-container">
         <div className="settingsSections">
           <button
             className="settings-btn"
@@ -53,25 +53,23 @@ class SettingsContainer extends Component {
           </button>
         </div>
         <div className="settingsSections">
-          <div id="adjustTempoContainer">
+          <div id="adjust-tempo-container">
             <button
               className="settings-btn"
               onClick={this.handleTempoDecreaseClick}
             >
-              v
+              <i className="icon ion-md-arrow-dropdown" />
             </button>
-            <div id="tempo">{this.state.tempo}</div>
+            <p id="tempo" settings-btn>
+              {this.state.tempo}
+            </p>
             <button
               className="settings-btn"
               onClick={this.handleTempoIncreaseClick}
             >
-              ^
+              <i className="icon ion-md-arrow-dropup" />
             </button>
           </div>
-        </div>
-        <div className="settingsSections">
-          <div>Kit</div>
-          <div>(kit selector)</div>
         </div>
       </div>
     );

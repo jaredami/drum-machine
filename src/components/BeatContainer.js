@@ -6,7 +6,7 @@ import InstrumentVolumeContainer from "./InstrumentVolumeContainer.js";
 class BeatContainer extends Component {
   render() {
     return (
-      <div id="beatContainer">
+      <div id="beat-container">
         <InstrumentLabelContainer />
         <BeatGrid />
         <InstrumentVolumeContainer />

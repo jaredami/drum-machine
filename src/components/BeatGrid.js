@@ -11,7 +11,7 @@ class BeatGrid extends Component {
     );
 
     return (
-      <div id="beatGrid">
+      <div id="beat-grid">
         {columnArrDark}
         {columnArrLight}
         {columnArrDark}

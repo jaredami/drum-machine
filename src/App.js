@@ -7,7 +7,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div id="drumMachineContainer">
+        <div id="drum-machine-container">
           <SettingsContainer />
           <BeatContainer />
         </div>
